@@ -19,9 +19,16 @@ const publicFiles = [
 ];
 
 fs.mkdirSync(publicDirectory, { recursive: true });
+const adminDirectory = path.join(publicDirectory, "admin");
+fs.mkdirSync(adminDirectory, { recursive: true });
 
 for (const file of publicFiles) {
   const source = path.join(projectRoot, file);
   const destinationName = file === "index (4).html" ? "index.html" : file;
   fs.copyFileSync(source, path.join(publicDirectory, destinationName));
 }
+
+fs.copyFileSync(
+  path.join(projectRoot, "admin.html"),
+  path.join(adminDirectory, "index.html")
+);
