@@ -5,6 +5,9 @@ const projectRoot = path.resolve(__dirname, "..");
 const publicDirectory = path.join(projectRoot, "public");
 const publicFiles = [
   "index (4).html",
+  "home-cleaning.html",
+  "gardening.html",
+  "service-pages.css",
   "admin.html",
   "admin.js",
   "public-content.js",

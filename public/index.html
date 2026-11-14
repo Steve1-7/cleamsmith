@@ -6,6 +6,7 @@
   <title>CLEANSMITH — Premium Mobile Car Wash &amp; Detailing | Johannesburg</title>
   <meta name="description" content="Professional mobile car wash and detailing service in Johannesburg.">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="service-pages.css" rel="stylesheet">
   <!-- Inline styles (consolidated for luxury upgrades) -->
   <style>
   /* Variables */
@@ -184,6 +185,7 @@
   .lightbox-overlay .lightbox-prev{left:18px}
   .lightbox-overlay .lightbox-next{right:18px}
   .lb-media{max-width:92vw;max-height:86vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.7);z-index:100010}
+  @media(min-width:769px) and (max-width:1100px){.nav-links{gap:.85rem}.nav-links a{font-size:.8rem;letter-spacing:.6px}.nav-social{display:none}}
   </style>
   <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
   <!-- JSON-LD Structured Data -->
@@ -203,16 +205,17 @@
   }
   </script>
 </head>
-<body>
+<body data-page-slug="car-wash">
 <canvas id="particles-canvas" aria-hidden="true"></canvas>
 <!-- Intro loader removed to avoid blocking page render -->
 <nav id="navbar">
   <a href="#" class="nav-logo"><img src="caleb.png" alt="CLEANSMITH" class="nav-logo-img"></a>
   <ul class="nav-links">
-    <li><a href="#features">Services</a></li>
+    <li><a href="#features">Car wash</a></li>
+    <li><a href="/home-cleaning.html">Home cleaning</a></li>
+    <li><a href="/gardening.html">Gardening</a></li>
     <li><a href="#packages">Packages</a></li>
-    <li><a href="#booking">Book</a></li>
-    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="/about">About us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-social">
@@ -227,7 +230,7 @@
   <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <a href="#features">Services</a><a href="#packages">Packages</a><a href="#booking">Book Now</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+  <a href="#features">Car wash</a><a href="/home-cleaning.html">Home cleaning</a><a href="/gardening.html">Gardening</a><a href="#packages">Packages</a><a href="/about">About us</a><a href="#booking">Book Now</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
 </div>
 <main>
 <section class="hero" id="home">
@@ -237,11 +240,12 @@
       <source src="clip1.mp4" type="video/mp4">
     </video>
   </div>
+  <img class="page-hero-image" data-page-hero alt="" aria-hidden="true" hidden>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Mobile Car Wash &amp; Detailing · Johannesburg</div>
-    <h1 class="hero-title">PREMIUM<br>MOBILE<br><span class="accent">CAR WASH</span></h1>
-    <p class="hero-sub">Professional detailing at your home, office, apartment, or anywhere you are. No queues. No driving. Just spotless results.</p>
+    <h1 class="hero-title" data-page-field="hero_title">Premium Mobile Car Wash</h1>
+    <p class="hero-sub" data-page-field="hero_subtitle">Professional mobile car care across Johannesburg.</p>
     <div class="hero-ctas">
       <a href="#booking" class="btn-primary">Book Now</a>
       <a href="#packages" class="btn-secondary">View Packages</a>
@@ -295,13 +299,33 @@
 <section class="features-section" id="features">
   <div class="section-inner">
     <div class="section-label fade-up">What We Offer</div>
-    <h2 class="section-title fade-up">THE CLEANSMITH <span style="color:var(--cyan)">DIFFERENCE</span></h2>
-    <p class="section-sub fade-up">Every service is crafted to deliver showroom-quality results, right where you need it.</p>
-    <div class="features-grid">
-      <div class="feature-card fade-up"><div class="feature-top"><div class="feature-icon">🚐</div><div class="feature-name">We Come To You</div></div><div class="feature-desc">Book from home, work, or anywhere. Our mobile unit arrives fully equipped at your location.</div></div>
-      <div class="feature-card fade-up"><div class="feature-top"><div class="feature-icon">🧽</div><div class="feature-name">Deep Interior Clean</div></div><div class="feature-desc">Full cabin vacuuming, thorough wipe-down of surfaces, vents and door pockets for a like-new interior.</div></div>
-      <div class="feature-card fade-up"><div class="feature-top"><div class="feature-icon">🧼</div><div class="feature-name">Carpet Cleaning</div></div><div class="feature-desc">Hot extraction and deep-cleaning for carpets and upholstery to remove stains and odours.</div></div>
-      <div class="feature-card fade-up"><div class="feature-top"><div class="feature-icon">🛏️</div><div class="feature-name">Mattress Cleaning</div></div><div class="feature-desc">Professional deep-cleaning for mattresses, removing dust mites, stains and allergens.</div></div>
+    <h2 class="section-title fade-up" data-page-field="section_title">Car-wash services</h2>
+    <p class="section-sub fade-up" data-page-field="intro">Choose from regular hand washing, complete valets, deep interior cleaning, exterior paint care, and detailed vehicle treatments. We come to your home or workplace, so your car gets careful attention without the queues.</p>
+    <div class="features-grid" data-page-services>
+      <article class="service-card">
+        <img class="service-card-image" src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&amp;fit=crop&amp;w=960&amp;q=80" alt="Exterior car wash" loading="lazy">
+        <div class="service-card-body"><p class="service-card-number">01</p><h3 class="service-card-title">Exterior Car Wash</h3><p class="service-card-description">A careful exterior clean for everyday upkeep, finished by hand at your home or workplace.</p><p class="service-card-price">Ask us for a quote</p><ul class="service-card-features"><li>Pre-rinse and foam wash</li><li>Hand wash and dry</li><li>Glass and tyre finish</li></ul></div>
+      </article>
+      <article class="service-card">
+        <img class="service-card-image" src="https://images.unsplash.com/photo-1605164599901-6f9c2c45c0c6?auto=format&amp;fit=crop&amp;w=960&amp;q=80" alt="Full vehicle valet" loading="lazy">
+        <div class="service-card-body"><p class="service-card-number">02</p><h3 class="service-card-title">Full Valet</h3><p class="service-card-description">A thorough inside-and-out refresh for vehicles that need more than a quick wash.</p><p class="service-card-price">Ask us for a quote</p><ul class="service-card-features"><li>Exterior wash and hand dry</li><li>Cabin vacuum and surface clean</li><li>Finishing touches for wheels and glass</li></ul></div>
+      </article>
+      <article class="service-card">
+        <img class="service-card-image" src="https://images.unsplash.com/photo-1600320254374-ce2d293c324e?auto=format&amp;fit=crop&amp;w=960&amp;q=80" alt="Interior vehicle cleaning" loading="lazy">
+        <div class="service-card-body"><p class="service-card-number">03</p><h3 class="service-card-title">Interior Deep Clean</h3><p class="service-card-description">Focused interior care for seats, carpets, mats, and high-touch cabin surfaces.</p><p class="service-card-price">Ask us for a quote</p><ul class="service-card-features"><li>Detailed vacuuming</li><li>Targeted upholstery and carpet care</li><li>Careful wipe-down of cabin surfaces</li></ul></div>
+      </article>
+      <article class="service-card">
+        <img class="service-card-image" src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&amp;fit=crop&amp;w=960&amp;q=80" alt="Vehicle exterior paint care" loading="lazy">
+        <div class="service-card-body"><p class="service-card-number">04</p><h3 class="service-card-title">Exterior Paint Care</h3><p class="service-card-description">Exterior treatments to improve the finish and help protect paintwork from everyday wear.</p><p class="service-card-price">Ask us for a quote</p><ul class="service-card-features"><li>Paint-safe hand wash</li><li>Polishing options by vehicle condition</li><li>Tyre and trim finishing</li></ul></div>
+      </article>
+      <article class="service-card">
+        <img class="service-card-image" src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&amp;fit=crop&amp;w=960&amp;q=80" alt="Vehicle detailing" loading="lazy">
+        <div class="service-card-body"><p class="service-card-number">05</p><h3 class="service-card-title">Vehicle Detailing</h3><p class="service-card-description">A tailored detail for owners who want a more comprehensive clean and finish.</p><p class="service-card-price">Ask us for a quote</p><ul class="service-card-features"><li>Interior and exterior assessment</li><li>Options matched to your vehicle</li><li>Scope confirmed before work begins</li></ul></div>
+      </article>
+    </div>
+    <div class="service-callout">
+      <h3 data-page-field="callout_title">We bring the clean to you</h3>
+      <p data-page-field="callout_text">Tell us your vehicle make and model, choose a package, and request a convenient time. We will confirm the final scope and price with you.</p>
     </div>
   </div>
 </section>
@@ -379,19 +403,46 @@
         </div>
         <div class="steps-inner" id="stepsInner">
           <div class="step" data-step="1" style="min-width:100%;padding:12px">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px">
-              <button type="button" class="checkbox-card" data-vehicle="hatch">Hatchback<br><small>Small car</small></button>
-              <button type="button" class="checkbox-card" data-vehicle="sedan">Sedan<br><small>Standard</small></button>
-              <button type="button" class="checkbox-card" data-vehicle="suv">SUV / Bakkie</button>
-              <button type="button" class="checkbox-card" data-vehicle="luxury">Luxury / Sports</button>
-              <button type="button" class="checkbox-card" data-vehicle="minibus">Minibus / Van</button>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px">
+              <label class="form-label">Vehicle make *
+                <select id="wizardMake" class="form-control" required>
+                  <option value="">Select make</option>
+                  <option>BMW</option><option>Mercedes-Benz</option><option>Audi</option><option>Toyota</option>
+                  <option>Volkswagen</option><option>Ford</option><option>Nissan</option><option>Honda</option>
+                  <option>Hyundai</option><option>Kia</option><option>Mazda</option><option>Lexus</option>
+                  <option>Land Rover</option><option>Porsche</option><option>Volvo</option><option>Suzuki</option>
+                  <option>Isuzu</option><option>Renault</option><option>Subaru</option><option>Other</option>
+                </select>
+              </label>
+              <label class="form-label">Model *
+                <select id="wizardModel" class="form-control" required disabled>
+                  <option value="">Choose a make first</option>
+                </select>
+              </label>
+              <label class="form-label" id="otherModelField" hidden>Enter model *
+                <input id="wizardModelOther" class="form-control" autocomplete="off">
+              </label>
+              <label class="form-label">Year *
+                <select id="wizardYear" class="form-control" required>
+                  <option value="">Select year</option>
+                </select>
+              </label>
+              <label class="form-label">Vehicle size *
+                <select id="wizardVehicle" name="vehicleType" class="form-control" required>
+                  <option value="">Select vehicle size</option>
+                  <option value="hatch">Hatchback / small car</option>
+                  <option value="sedan">Sedan</option>
+                  <option value="suv">SUV / bakkie</option>
+                  <option value="luxury">Luxury / sports</option>
+                  <option value="minibus">Minibus / van</option>
+                </select>
+              </label>
             </div>
             <div id="wizardPackages" style="display:flex;gap:12px;flex-wrap:wrap">
               <div class="pkg-select-card" data-pkg="basic" style="flex:1;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.06);cursor:pointer">Basic<br><strong>R250</strong></div>
               <div class="pkg-select-card featured" data-pkg="premium" style="flex:1;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.06);cursor:pointer">Premium<br><strong>R550</strong></div>
               <div class="pkg-select-card executive" data-pkg="executive" style="flex:1;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.06);cursor:pointer">Executive<br><strong>R1,200</strong></div>
             </div>
-            <input type="hidden" name="vehicleType" id="wizardVehicle">
             <input type="hidden" name="packageType" id="wizardPackage">
           </div>
           <div class="step hidden" data-step="2" style="min-width:100%;padding:12px">
@@ -416,6 +467,20 @@
                   <option>15:00 – 17:00</option>
                 </select>
               </div>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+              <div style="flex:1;min-width:160px">
+                <label class="form-label">Vehicle colour</label>
+                <input id="wizardVehicleColor" name="vehicleColor" class="form-control" autocomplete="off">
+              </div>
+              <div style="flex:1;min-width:160px">
+                <label class="form-label">Registration (optional)</label>
+                <input id="wizardVehicleRegistration" name="vehicleRegistration" class="form-control" autocomplete="off">
+              </div>
+            </div>
+            <div style="margin-top:12px">
+              <label class="form-label">Vehicle condition or special instructions</label>
+              <input id="wizardVehicleNotes" name="vehicleNotes" class="form-control" placeholder="For example, pet hair, stains, or a specific area to focus on">
             </div>
             <div style="margin-top:12px">
               <label class="form-label">Address *</label>
@@ -555,12 +620,14 @@
         <li><a href="#packages">Premium Detail</a></li>
         <li><a href="#packages">Executive Ceramic</a></li>
         <li><a href="#booking">Same-Day Booking</a></li>
+        <li><a href="/home-cleaning.html">Home cleaning</a></li>
+        <li><a href="/gardening.html">Gardening</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-title">Company</div>
       <ul class="footer-links">
-        <li><a href="#features">About Us</a></li>
+        <li><a href="/about">About us</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="./admin.html" rel="nofollow">Admin sign in</a></li>
@@ -740,8 +807,41 @@ document.querySelectorAll('.select-toggle').forEach(function(btn){ btn.addEventL
 var prices = window.CLEANSMITH_PRICES = { basic:{hatch:250,sedan:280,suv:320,luxury:350,minibus:300}, premium:{hatch:500,sedan:550,suv:650,luxury:750,minibus:600}, executive:{hatch:1100,sedan:1200,suv:1400,luxury:1600,minibus:1300} };
 window.CLEANSMITH_PACKAGE_NAMES = { basic:'Basic Wash', premium:'Premium Detail', executive:'Executive Ceramic' };
 var addonPrices={ deep_interior:200, carpet_clean:250, mattress_clean:300 };
-function updatePrice(){ var selectedVehicles = Array.from(document.querySelectorAll('input[name="vehicleType"]:checked')).map(function(i){return i.value}); var selectedPackages = Array.from(document.querySelectorAll('input[name="packageType"]:checked')).map(function(i){return i.value}); var display=document.getElementById('priceDisplay'); if(!display) return; var selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(function(i){return i.value}); var addonsTotal = selectedAddons.reduce(function(sum,key){ return sum + (addonPrices[key]||0); },0); var total=0; if(selectedVehicles.length>0 && selectedPackages.length>0){ selectedVehicles.forEach(function(v){ selectedPackages.forEach(function(p){ if(prices[p]&&prices[p][v]) total += prices[p][v]; }); }); total += addonsTotal; display.textContent = 'R ' + total.toLocaleString(); } else if(selectedPackages.length>0){ var starting=0; selectedPackages.forEach(function(p){ if(prices[p]){ var vals = Object.values(prices[p]); starting += Math.min.apply(null,vals); } }); display.textContent = addonsTotal>0 ? 'from R ' + starting.toLocaleString() + ' +addons' : 'from R ' + starting.toLocaleString(); } else { display.textContent = 'R —'; } }
-document.querySelectorAll('input[name="vehicleType"], input[name="packageType"]').forEach(function(el){ if(el) el.addEventListener('change',updatePrice); }); document.querySelectorAll('input[name="addons"]').forEach(function(el){ el.addEventListener('change',updatePrice); }); updatePrice();
+var vehicleTypeLabels = { hatch:'Hatchback / small car', sedan:'Sedan', suv:'SUV / bakkie', luxury:'Luxury / sports', minibus:'Minibus / van' };
+var vehicleModelCatalog = {
+  BMW:[['1 Series','hatch'],['2 Series','sedan'],['3 Series','sedan'],['5 Series','sedan'],['7 Series','luxury'],['M2','luxury'],['M3','luxury'],['M4','luxury'],['M5','luxury'],['X1','suv'],['X3','suv'],['X5','suv'],['X6','suv']],
+  'Mercedes-Benz':[['A-Class','hatch'],['C-Class','sedan'],['E-Class','sedan'],['S-Class','luxury'],['AMG A 45','luxury'],['AMG C 63','luxury'],['GLA','suv'],['GLC','suv'],['GLE','suv'],['GLS','suv']],
+  Audi:[['A1','hatch'],['A3','sedan'],['A4','sedan'],['A5','sedan'],['A6','sedan'],['Q3','suv'],['Q5','suv'],['Q7','suv'],['RS 3','luxury'],['RS 5','luxury']],
+  Toyota:[['Agya','hatch'],['Starlet','hatch'],['Corolla','sedan'],['Camry','sedan'],['Corolla Cross','suv'],['RAV4','suv'],['Fortuner','suv'],['Hilux','suv'],['Land Cruiser','suv']],
+  Volkswagen:[['Polo','hatch'],['Polo Vivo','hatch'],['Golf','hatch'],['Jetta','sedan'],['T-Cross','suv'],['Tiguan','suv'],['Touareg','suv'],['Amarok','suv']],
+  Ford:[['Fiesta','hatch'],['Focus','hatch'],['EcoSport','suv'],['Everest','suv'],['Ranger','suv'],['Mustang','luxury']],
+  Nissan:[['Micra','hatch'],['Almera','sedan'],['Qashqai','suv'],['X-Trail','suv'],['Navara','suv'],['Patrol','suv']],
+  Honda:[['Jazz','hatch'],['Civic','sedan'],['Accord','sedan'],['HR-V','suv'],['CR-V','suv']],
+  Hyundai:[['i10','hatch'],['i20','hatch'],['Elantra','sedan'],['Creta','suv'],['Tucson','suv'],['Santa Fe','suv']],
+  Kia:[['Picanto','hatch'],['Rio','hatch'],['Cerato','sedan'],['Seltos','suv'],['Sportage','suv'],['Sorento','suv']],
+  Mazda:[['Mazda2','hatch'],['Mazda3','sedan'],['CX-3','suv'],['CX-5','suv'],['BT-50','suv']],
+  Lexus:[['IS','luxury'],['ES','luxury'],['UX','suv'],['NX','suv'],['RX','suv']],
+  'Land Rover':[['Defender','suv'],['Discovery','suv'],['Range Rover','luxury'],['Range Rover Sport','luxury'],['Evoque','suv']],
+  Porsche:[['911','luxury'],['Cayenne','luxury'],['Macan','luxury'],['Panamera','luxury']],
+  Volvo:[['S60','sedan'],['S90','luxury'],['XC40','suv'],['XC60','suv'],['XC90','suv']],
+  Suzuki:[['Swift','hatch'],['Baleno','hatch'],['Vitara','suv'],['Jimny','suv']],
+  Isuzu:[['D-Max','suv'],['MU-X','suv']],
+  Renault:[['Kwid','hatch'],['Clio','hatch'],['Captur','suv'],['Duster','suv']],
+  Subaru:[['Impreza','sedan'],['Forester','suv'],['Outback','suv'],['WRX','luxury']]
+};
+function updatePrice(){
+  var vehicle = document.getElementById('wizardVehicle');
+  var packageInput = document.getElementById('wizardPackage');
+  var display = document.getElementById('priceDisplay');
+  if(!display) return;
+  var vehicleType = vehicle ? vehicle.value : '';
+  var packageType = packageInput ? packageInput.value : '';
+  var addonsTotal = Array.from(document.querySelectorAll('input[name="addons"]:checked')).reduce(function(sum,input){ return sum + (addonPrices[input.value]||0); },0);
+  var total = packageType && vehicleType && prices[packageType] ? prices[packageType][vehicleType] || 0 : 0;
+  display.textContent = total ? 'R ' + (total + addonsTotal).toLocaleString() : 'R —';
+}
+document.querySelectorAll('#wizardVehicle, input[name="packageType"], input[name="addons"]').forEach(function(el){ el.addEventListener('change',updatePrice); });
+updatePrice();
 
 // Booking form submission -> show dual buttons
 var bookingForm = document.getElementById('bookingForm'); if(bookingForm){
@@ -752,11 +852,52 @@ var bookingForm = document.getElementById('bookingForm'); if(bookingForm){
   var wizardNext = document.getElementById('wizardNext');
   var wizardBack = document.getElementById('wizardBack');
   var currentStep = 1; var totalSteps = 3;
+  function selectedVehicleInfo(){
+    var make = document.getElementById('wizardMake').value;
+    var model = document.getElementById('wizardModel').value;
+    var modelName = model === '__other__' ? document.getElementById('wizardModelOther').value.trim() : model;
+    var year = document.getElementById('wizardYear').value;
+    if(!make || !modelName || !year) return '';
+    return year + ' ' + make + ' ' + modelName;
+  }
+  function setupVehicleFields(){
+    var makeInput = document.getElementById('wizardMake');
+    var modelInput = document.getElementById('wizardModel');
+    var otherField = document.getElementById('otherModelField');
+    var otherInput = document.getElementById('wizardModelOther');
+    var yearInput = document.getElementById('wizardYear');
+    var typeInput = document.getElementById('wizardVehicle');
+    var currentYear = new Date().getFullYear();
+    for(var year = currentYear; year >= 1990; year--) yearInput.add(new Option(String(year), String(year)));
+    function refreshVehicle(){
+      calcWizardTotal();
+      updateWizardPreview();
+      updatePrice();
+    }
+    makeInput.addEventListener('change',function(){
+      modelInput.replaceChildren(new Option(makeInput.value ? 'Select model' : 'Choose a make first',''));
+      (vehicleModelCatalog[makeInput.value] || []).forEach(function(model){ modelInput.add(new Option(model[0],model[0])); });
+      if(makeInput.value) modelInput.add(new Option('Other / not listed','__other__'));
+      modelInput.disabled = !makeInput.value;
+      otherField.hidden = true;
+      otherInput.value = '';
+      refreshVehicle();
+    });
+    modelInput.addEventListener('change',function(){
+      var isOther = modelInput.value === '__other__';
+      otherField.hidden = !isOther;
+      otherInput.value = '';
+      var selected = (vehicleModelCatalog[makeInput.value] || []).find(function(model){ return model[0] === modelInput.value; });
+      if(selected) typeInput.value = selected[1];
+      refreshVehicle();
+      if(isOther) otherInput.focus();
+    });
+    [otherInput,yearInput,typeInput].forEach(function(input){ input.addEventListener('change',refreshVehicle); });
+    otherInput.addEventListener('input',refreshVehicle);
+  }
   function showStep(n){ currentStep = n; if(stepFill) stepFill.style.width = ((n-1)/(totalSteps-1))*100 + '%'; if(stepLabel) stepLabel.textContent = 'Step '+n+' of '+totalSteps; if(wizardBack) wizardBack.style.display = n>1 ? 'inline-block':'none'; if(wizardNext) wizardNext.textContent = n<totalSteps ? 'Next' : 'Review & Confirm'; document.querySelectorAll('.step').forEach(function(s){ var stepNum = parseInt(s.getAttribute('data-step'),10); var hidden = stepNum !== n; s.classList.toggle('hidden', hidden); s.setAttribute('aria-hidden', String(hidden)); }); calcWizardTotal(); updateWizardPreview(); }
   showStep(1);
-
-  // vehicle selection
-  document.querySelectorAll('.checkbox-card').forEach(function(card){ card.addEventListener('click',function(){ document.querySelectorAll('.checkbox-card').forEach(function(c){ c.classList.remove('active'); }); card.classList.add('active'); var v = card.getAttribute('data-vehicle'); var wv = document.getElementById('wizardVehicle'); if(wv) wv.value = v; document.querySelectorAll('input[name="vehicleType"]').forEach(function(cb){ cb.checked = (cb.value===v); }); calcWizardTotal(); }); });
+  setupVehicleFields();
 
   // package selection inside wizard
   document.querySelectorAll('.pkg-select-card').forEach(function(card){ card.addEventListener('click',function(){ document.querySelectorAll('.pkg-select-card').forEach(function(c){ c.classList.remove('active'); }); card.classList.add('active'); var p = card.getAttribute('data-pkg'); var wp = document.getElementById('wizardPackage'); if(wp) wp.value = p; window.preselectedPackage = p; document.querySelectorAll('.select-toggle').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-pkg')===p); }); document.querySelectorAll('input[name="packageType"]').forEach(function(cb){ cb.checked = (cb.value === p); }); calcWizardTotal(); }); });
@@ -768,7 +909,7 @@ var bookingForm = document.getElementById('bookingForm'); if(bookingForm){
   document.querySelectorAll('.select-toggle').forEach(function(btn){ btn.addEventListener('click',function(){ var pkg = btn.getAttribute('data-pkg'); window.preselectedPackage = pkg; var wp = document.getElementById('wizardPackage'); if(wp) wp.value = pkg; var card = document.querySelector('.pkg-select-card[data-pkg="'+pkg+'"]'); if(card) card.classList.add('active'); }); });
 
   // navigation
-  if(wizardNext){ wizardNext.addEventListener('click',function(){ if(currentStep<totalSteps){ if(currentStep===1){ var v=document.getElementById('wizardVehicle').value; var p=document.getElementById('wizardPackage').value; if(!v||!p){ alert('Please select vehicle type and package to continue'); return; } } if(currentStep===2){ var date=document.getElementById('wizardDate').value; var time=document.getElementById('wizardTime').value; var address=document.getElementById('wizardAddress').value||''; if(!date||!time||!address.trim()){ alert('Please choose date, time and provide address'); return; } } showStep(currentStep+1); } else { document.getElementById('wizardName').focus(); } }); }
+  if(wizardNext){ wizardNext.addEventListener('click',function(){ if(currentStep<totalSteps){ if(currentStep===1){ var make=document.getElementById('wizardMake').value; var model=document.getElementById('wizardModel').value; var customModel=document.getElementById('wizardModelOther').value.trim(); var year=document.getElementById('wizardYear').value; var v=document.getElementById('wizardVehicle').value; var p=document.getElementById('wizardPackage').value; if(!make||!model||(model==='__other__'&&!customModel)||!year||!v||!p){ alert('Please select your vehicle make, model, year, size, and package to continue.'); return; } } if(currentStep===2){ var date=document.getElementById('wizardDate').value; var time=document.getElementById('wizardTime').value; var address=document.getElementById('wizardAddress').value||''; if(!date||!time||!address.trim()){ alert('Please choose date, time and provide address'); return; } } showStep(currentStep+1); } else { document.getElementById('wizardName').focus(); } }); }
   if(wizardBack){ wizardBack.addEventListener('click',function(){ if(currentStep>1) showStep(currentStep-1); }); }
 
   // addons change updates
@@ -782,17 +923,71 @@ var bookingForm = document.getElementById('bookingForm'); if(bookingForm){
   function calcWizardTotal(){ var v=document.getElementById('wizardVehicle')?document.getElementById('wizardVehicle').value:''; var p=document.getElementById('wizardPackage')?document.getElementById('wizardPackage').value:''; var selectedAddons = Array.from(document.querySelectorAll('#stepsInner input[name="addons"]:checked')).map(function(i){return i.value}); var addonsTotal = selectedAddons.reduce(function(sum,key){ return sum + (addonPrices[key]||0); },0); var total=0; if(p && v && prices[p] && prices[p][v]) total = prices[p][v]; total += addonsTotal; var el = document.getElementById('wizardTotal'); if(el) el.textContent = total>0 ? 'R ' + total.toLocaleString() : 'R —'; }
 
   // Update the small preview (step 2) and summary (step 3)
-  function updateWizardPreview(){ var v=document.getElementById('wizardVehicle')?document.getElementById('wizardVehicle').value:''; var p=document.getElementById('wizardPackage')?document.getElementById('wizardPackage').value:''; var vehicleMap={ hatch:'Hatchback', sedan:'Sedan', suv:'SUV / Bakkie', luxury:'Luxury / Sports', minibus:'Minibus / Van'}; var packageMap=window.CLEANSMITH_PACKAGE_NAMES || {}; var pv = document.getElementById('previewVehicle'); var pp = document.getElementById('previewPackage'); var pr = document.getElementById('previewPrice'); if(pv) pv.textContent = vehicleMap[v]||'—'; if(pp) pp.textContent = packageMap[p]||p||'—'; var price = 'R —'; if(p && v && prices[p] && prices[p][v]) price = 'R ' + prices[p][v].toLocaleString(); if(pr) pr.textContent = price; // also update summary
-    var sv = document.getElementById('summaryVehicleVal'); var sp = document.getElementById('summaryPackageVal'); var st = document.getElementById('summaryTotal'); if(sv) sv.textContent = vehicleMap[v]||'—'; if(sp) sp.textContent = packageMap[p]||p||'—'; if(st) st.textContent = price; }
+  function updateWizardPreview(){
+    var vehicleType = document.getElementById('wizardVehicle').value;
+    var packageType = document.getElementById('wizardPackage').value;
+    var packageMap = window.CLEANSMITH_PACKAGE_NAMES || {};
+    var vehicleInfo = selectedVehicleInfo();
+    var classLabel = vehicleTypeLabels[vehicleType] || '';
+    var vehicleLabel = vehicleInfo ? vehicleInfo + (classLabel ? ' · ' + classLabel : '') : '—';
+    var price = 'R —';
+    if(packageType && vehicleType && prices[packageType] && prices[packageType][vehicleType]) {
+      price = 'R ' + prices[packageType][vehicleType].toLocaleString();
+    }
+    var previewVehicle = document.getElementById('previewVehicle');
+    var previewPackage = document.getElementById('previewPackage');
+    var previewPrice = document.getElementById('previewPrice');
+    var summaryVehicle = document.getElementById('summaryVehicleVal');
+    var summaryPackage = document.getElementById('summaryPackageVal');
+    var summaryTotal = document.getElementById('summaryTotal');
+    if(previewVehicle) previewVehicle.textContent = vehicleLabel;
+    if(previewPackage) previewPackage.textContent = packageMap[packageType] || packageType || '—';
+    if(previewPrice) previewPrice.textContent = price;
+    if(summaryVehicle) summaryVehicle.textContent = vehicleLabel;
+    if(summaryPackage) summaryPackage.textContent = packageMap[packageType] || packageType || '—';
+    if(summaryTotal) summaryTotal.textContent = price;
+  }
   window.CLEANSMITH_UPDATE_WIZARD = function(){ calcWizardTotal(); updateWizardPreview(); };
 
   // wire preview updates to selection changes and inputs
-  document.querySelectorAll('.checkbox-card').forEach(function(c){ c.addEventListener('click', function(){ setTimeout(updateWizardPreview,50); }); });
   document.querySelectorAll('.pkg-select-card').forEach(function(c){ c.addEventListener('click', function(){ setTimeout(updateWizardPreview,50); }); });
   document.querySelectorAll('.select-toggle').forEach(function(b){ b.addEventListener('click', function(){ setTimeout(updateWizardPreview,50); }); });
-  ['wizardDate','wizardTime','wizardAddress','wizardName','wizardPhone'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('change', function(){ updateWizardPreview(); }); });
+  ['wizardDate','wizardTime','wizardAddress','wizardName','wizardPhone','wizardVehicleColor','wizardVehicleRegistration','wizardVehicleNotes'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('change', function(){ updateWizardPreview(); }); });
 
-  function buildMessageParts(){ var name=document.getElementById('wizardName').value||''; var phone=document.getElementById('wizardPhone').value||''; var email=document.getElementById('wizardEmail').value||''; var date=document.getElementById('wizardDate').value||''; var time=document.getElementById('wizardTime').value||''; var address=document.getElementById('wizardAddress').value||''; var notes=document.getElementById('wizardNotes').value||''; var v=document.getElementById('wizardVehicle').value||''; var p=document.getElementById('wizardPackage').value||''; var addons=Array.from(document.querySelectorAll('#stepsInner input[name="addons"]:checked')).map(function(i){return i.value}); var vehicleMap={ hatch:'Hatchback / Small Car', sedan:'Sedan / Standard', suv:'SUV / Bakkie', luxury:'Luxury / Sports', minibus:'Minibus / Van'}; var packageMap=window.CLEANSMITH_PACKAGE_NAMES || {}; var addonMap={ deep_interior:'Deep Interior Clean & Vacuum', carpet_clean:'Carpet Cleaning', mattress_clean:'Mattress Cleaning'}; var parts=[]; parts.push('Hello CLEANSMITH team,'); parts.push('I would like to request a booking. Please confirm availability.'); parts.push('---'); parts.push('Name: '+name); parts.push('Contact: '+phone + (email? ' | '+email : '')); parts.push('Vehicle: '+(vehicleMap[v]||v)); parts.push('Package: '+(packageMap[p]||p)); if(addons.length) parts.push('Add-ons: '+addons.map(function(a){return addonMap[a]||a}).join(', ')); parts.push('Preferred date & time: '+date+' '+time); parts.push('Address: '+address); if(notes) parts.push('Notes: '+notes); var total=0; if(prices[p] && prices[p][v]) total=prices[p][v]; total += addons.reduce(function(s,k){return s + (addonPrices[k]||0);},0); if(total>0) parts.push('Estimated total: R '+total.toLocaleString()); parts.push('---'); parts.push('Thanks,'); parts.push(name||''); return parts; }
+  function buildMessageParts(){
+    var name=document.getElementById('wizardName').value||'';
+    var phone=document.getElementById('wizardPhone').value||'';
+    var email=document.getElementById('wizardEmail').value||'';
+    var date=document.getElementById('wizardDate').value||'';
+    var time=document.getElementById('wizardTime').value||'';
+    var address=document.getElementById('wizardAddress').value||'';
+    var notes=document.getElementById('wizardNotes').value||'';
+    var vehicleType=document.getElementById('wizardVehicle').value||'';
+    var packageType=document.getElementById('wizardPackage').value||'';
+    var vehicleColor=document.getElementById('wizardVehicleColor').value.trim();
+    var vehicleRegistration=document.getElementById('wizardVehicleRegistration').value.trim();
+    var vehicleNotes=document.getElementById('wizardVehicleNotes').value.trim();
+    var addons=Array.from(document.querySelectorAll('#stepsInner input[name="addons"]:checked')).map(function(input){return input.value});
+    var packageMap=window.CLEANSMITH_PACKAGE_NAMES || {};
+    var addonMap={ deep_interior:'Deep Interior Clean & Vacuum', carpet_clean:'Carpet Cleaning', mattress_clean:'Mattress Cleaning'};
+    var parts=['Hello CLEANSMITH team,','I would like to request a booking. Please confirm availability.','---'];
+    parts.push('Name: '+name);
+    parts.push('Contact: '+phone + (email ? ' | '+email : ''));
+    parts.push('Vehicle: '+selectedVehicleInfo()+' ('+(vehicleTypeLabels[vehicleType]||vehicleType)+')');
+    if(vehicleColor) parts.push('Vehicle colour: '+vehicleColor);
+    if(vehicleRegistration) parts.push('Vehicle registration: '+vehicleRegistration);
+    if(vehicleNotes) parts.push('Vehicle notes: '+vehicleNotes);
+    parts.push('Package: '+(packageMap[packageType]||packageType));
+    if(addons.length) parts.push('Add-ons: '+addons.map(function(addon){return addonMap[addon]||addon}).join(', '));
+    parts.push('Preferred date & time: '+date+' '+time);
+    parts.push('Address: '+address);
+    if(notes) parts.push('Notes: '+notes);
+    var total=prices[packageType] && prices[packageType][vehicleType] ? prices[packageType][vehicleType] : 0;
+    total += addons.reduce(function(sum,key){return sum+(addonPrices[key]||0);},0);
+    if(total>0) parts.push('Estimated total: R '+total.toLocaleString());
+    parts.push('---','Thanks,',name);
+    return parts;
+  }
 
   // ensure preview is correct on step change
   updateWizardPreview();

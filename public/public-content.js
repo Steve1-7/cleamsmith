@@ -163,6 +163,65 @@
     });
   }
 
+  function safeImageUrl(value) {
+    var url = String(value || '').trim();
+    return /^https?:\/\//i.test(url) || /^\/(?!\/)/.test(url) ? url : '';
+  }
+
+  function renderSitePage(rows) {
+    var slug = document.body.dataset.pageSlug;
+    var page = rows.find(function (item) { return item.slug === slug; });
+    if (!page) return;
+
+    document.querySelectorAll('[data-page-field]').forEach(function (node) {
+      var field = node.dataset.pageField;
+      if (page[field] !== undefined) node.textContent = page[field];
+    });
+
+    var heroImage = document.querySelector('[data-page-hero]');
+    var heroImageUrl = safeImageUrl(page.hero_image_url);
+    if (heroImage && heroImageUrl) {
+      heroImage.src = heroImageUrl;
+      heroImage.hidden = false;
+    }
+
+    var serviceGrid = document.querySelector('[data-page-services]');
+    if (!serviceGrid) return;
+    serviceGrid.replaceChildren();
+    (Array.isArray(page.services) ? page.services : []).forEach(function (service, index) {
+      var card = element('article', 'service-card');
+      var imageUrl = safeImageUrl(service.image_url);
+      if (imageUrl) {
+        var image = element('img', 'service-card-image');
+        image.src = imageUrl;
+        image.alt = service.title || 'CLEANSMITH service';
+        image.loading = 'lazy';
+        card.appendChild(image);
+      }
+
+      var body = element('div', 'service-card-body');
+      body.appendChild(element('p', 'service-card-number', String(index + 1).padStart(2, '0')));
+      body.appendChild(element('h3', 'service-card-title', service.title || 'Service'));
+      body.appendChild(element('p', 'service-card-description', service.description || ''));
+      if (service.price_label) {
+        body.appendChild(element('p', 'service-card-price', service.price_label));
+      }
+      if (Array.isArray(service.features) && service.features.length) {
+        var list = element('ul', 'service-card-features');
+        service.features.forEach(function (feature) {
+          list.appendChild(element('li', '', feature));
+        });
+        body.appendChild(list);
+      }
+      card.appendChild(body);
+      serviceGrid.appendChild(card);
+    });
+
+    if (!serviceGrid.children.length) {
+      serviceGrid.appendChild(element('p', 'service-page-empty', 'Service details are being updated. Please contact us for a quote.'));
+    }
+  }
+
   document.addEventListener('click', function (event) {
     var target = event.target.closest('.select-toggle, .pkg-select-card');
     if (target) {
@@ -209,11 +268,13 @@
   Promise.all([
     readRows('packages', 'sort_order'),
     readRows('membership_plans', 'sort_order'),
-    readRows('work_gallery', 'sort_order')
+    readRows('work_gallery', 'sort_order'),
+    readRows('site_pages', 'sort_order')
   ]).then(function (results) {
     renderPackages(results[0]);
     renderMemberships(results[1]);
     renderGallery(results[2]);
+    renderSitePage(results[3]);
   }).catch(function (error) {
     console.error('Unable to load CLEANSMITH public content from Supabase:', error);
   });

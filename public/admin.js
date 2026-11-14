@@ -8,6 +8,7 @@
   var dashboardStatus = document.getElementById('dashboardStatus');
   var client;
   var plans = [];
+  var sitePages = [];
 
   function message(node, text, error) {
     node.textContent = text || '';
@@ -135,6 +136,77 @@
     });
   }
 
+  function formatSiteServices(services) {
+    return (services || []).map(function (service) {
+      return [
+        service.title || '',
+        service.description || '',
+        service.price_label || '',
+        service.image_url || '',
+        (service.features || []).join('; ')
+      ].join(' | ');
+    }).join('\n');
+  }
+
+  function parseSiteServices(value) {
+    return lines(value).map(function (line, index) {
+      var fields = line.split('|').map(function (field) { return field.trim(); });
+      if (fields.length < 2 || !fields[0] || !fields[1]) {
+        throw new Error('Service card line ' + (index + 1) + ' needs a title and description separated by |.');
+      }
+      return {
+        title: fields[0],
+        description: fields[1],
+        price_label: fields[2] || '',
+        image_url: fields[3] || '',
+        features: fields[4] ? fields[4].split(';').map(function (feature) { return feature.trim(); }).filter(Boolean) : []
+      };
+    });
+  }
+
+  function editSitePage(form, page) {
+    editForm(form, Object.assign({}, page, { services_text: formatSiteServices(page.services) }), {
+      sort_order: String
+    });
+  }
+
+  function renderSitePages(data) {
+    sitePages = data;
+    var form = document.getElementById('sitePageForm');
+    var select = form.elements.slug;
+    var list = document.getElementById('sitePageList');
+    var names = {
+      'car-wash': 'Car Wash',
+      'home-cleaning': 'Home Cleaning',
+      gardening: 'Gardening'
+    };
+    var selectedSlug = select.value || 'car-wash';
+    select.replaceChildren();
+    Object.keys(names).forEach(function (slug) {
+      select.add(new Option(names[slug], slug));
+    });
+    select.value = selectedSlug in names ? selectedSlug : 'car-wash';
+
+    list.replaceChildren();
+    data.forEach(function (page) {
+      var item = make('article', undefined, 'item');
+      var main = make('div', undefined, 'item-main');
+      main.appendChild(make('div', names[page.slug] || page.slug, 'item-title'));
+      main.appendChild(make('small', page.hero_title + ' · ' + (page.services || []).length + ' service cards', 'muted'));
+      item.appendChild(main);
+      var actions = make('div', undefined, 'item-actions');
+      actions.appendChild(actionButton('Edit', function () {
+        select.value = page.slug;
+        editSitePage(form, page);
+      }, false));
+      item.appendChild(actions);
+      list.appendChild(item);
+    });
+
+    var selectedPage = data.find(function (page) { return page.slug === select.value; });
+    if (selectedPage) editSitePage(form, selectedPage);
+  }
+
   function renderPlans(data) {
     plans = data;
     var list = document.getElementById('planList');
@@ -216,14 +288,16 @@
   function refresh() {
     return Promise.all([
       rows('packages', 'sort_order'),
+      rows('site_pages', 'sort_order'),
       rows('membership_plans', 'sort_order'),
       rows('members', 'full_name'),
       rows('work_gallery', 'sort_order')
     ]).then(function (data) {
       renderPackages(data[0]);
-      renderPlans(data[1]);
-      renderMembers(data[2]);
-      renderGallery(data[3]);
+      renderSitePages(data[1]);
+      renderPlans(data[2]);
+      renderMembers(data[3]);
+      renderGallery(data[4]);
     });
   }
 
@@ -243,6 +317,7 @@
       try {
         var raw = formValues(form);
         var id = raw.id;
+        var selectedPageSlug = formId === 'sitePageForm' ? raw.slug : '';
         delete raw.id;
         var prepared;
         var persisted = false;
@@ -254,6 +329,7 @@
           if (afterSave) return afterSave(record, raw, prepared);
         }).then(function () {
           resetForm(form);
+          if (selectedPageSlug) form.elements.slug.value = selectedPageSlug;
           return refresh();
         }).then(function () {
           message(dashboardStatus, 'Saved successfully.');
@@ -334,6 +410,22 @@
       delete values.price_minibus;
       values.is_active = values.is_active === 'true';
       return values;
+    });
+    connectForm('sitePageForm', 'site_pages', function (values) {
+      values.sort_order = number(values.sort_order);
+      values.services = parseSiteServices(values.services_text);
+      delete values.services_text;
+      return values;
+    });
+    document.getElementById('sitePageForm').elements.slug.addEventListener('change', function (event) {
+      var page = sitePages.find(function (item) { return item.slug === event.currentTarget.value; });
+      if (page) editSitePage(event.currentTarget.form, page);
+      else {
+        var slug = event.currentTarget.value;
+        event.currentTarget.form.reset();
+        event.currentTarget.form.elements.slug.value = slug;
+        event.currentTarget.form.elements.id.value = '';
+      }
     });
     connectForm('planForm', 'membership_plans', function (values) {
       values.price = number(values.price);
