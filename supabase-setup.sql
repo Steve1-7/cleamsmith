@@ -57,6 +57,7 @@ create table if not exists public.members (
 
 create table if not exists public.work_gallery (
   id uuid primary key default gen_random_uuid(),
+  service_slug text not null default 'car-wash' check (service_slug in ('car-wash', 'home-cleaning', 'gardening')),
   title text not null,
   caption text not null default '',
   alt_text text not null default '',
@@ -69,9 +70,17 @@ create table if not exists public.work_gallery (
   updated_at timestamptz not null default now()
 );
 
+alter table public.work_gallery
+  add column if not exists service_slug text not null default 'car-wash';
+alter table public.work_gallery
+  drop constraint if exists work_gallery_service_slug_check;
+alter table public.work_gallery
+  add constraint work_gallery_service_slug_check
+  check (service_slug in ('car-wash', 'home-cleaning', 'gardening'));
+
 create table if not exists public.site_pages (
   id uuid primary key default gen_random_uuid(),
-  slug text not null unique check (slug in ('car-wash', 'home-cleaning', 'gardening')),
+  slug text not null unique check (slug in ('car-wash', 'home-cleaning', 'gardening', 'about')),
   hero_title text not null,
   hero_subtitle text not null default '',
   intro text not null default '',
@@ -87,6 +96,11 @@ create table if not exists public.site_pages (
 
 alter table public.site_pages
   add column if not exists sort_order integer not null default 0;
+alter table public.site_pages
+  drop constraint if exists site_pages_slug_check;
+alter table public.site_pages
+  add constraint site_pages_slug_check
+  check (slug in ('car-wash', 'home-cleaning', 'gardening', 'about'));
 
 alter table public.packages enable row level security;
 alter table public.membership_plans enable row level security;
@@ -172,6 +186,28 @@ values
   ('executive', 'Executive Ceramic', 'Our ultimate protection and detailing service.', 1200, 'session',
    '{"hatch":1100,"sedan":1200,"suv":1400,"luxury":1600,"minibus":1300}'::jsonb, '3 – 4 hours',
    array['Premium ceramic coating', 'Full interior detailing', 'Leather treatment', 'Engine bay wipe', 'Premium wax finish', 'Seat deep clean', 'Odor treatment', 'Full exterior polish', 'Detailed rim cleaning'], 'Top Tier', 'executive', 3)
+on conflict (slug) do nothing;
+
+insert into public.site_pages
+  (slug, hero_title, hero_subtitle, intro, hero_image_url, section_title, services, callout_title, callout_text, sort_order)
+values
+  ('about', 'The Cleansmith Story', 'From One Pair of Hands to Johannesburg’s Trusted Mobile Car Wash',
+   $$Every great business starts with a simple standard: do the work so well that people ask for you by name.
+
+Cleansmith didn’t begin with a fleet of vehicles, expensive equipment, or a massive marketing budget. It started with one guy working at a local car wash, focused purely on attention to detail and treating every vehicle as if it were my own. In an industry where people are used to rushed jobs and missed spots, consistency stands out fast. Before long, regular customers stopped just pulling into the wash bay—they started waiting for me specifically to handle their cars.
+
+As demand grew, those same clients faced a common Joburg problem: tight schedules and zero time to sit around waiting at a car wash. Eventually, they asked a simple question that changed everything: “Can you just come to my house instead?”
+
+That shift—from waiting for clients to come to the wash bay to bringing the service straight to their driveways—was the birth of Cleansmith.
+
+We never relied on flashy ads to grow; word of mouth did all the heavy lifting. When you deliver spotless results every single time, people talk. Soon, the calls weren’t just coming from residential driveways—word of mouth took us straight to the SABC, where the crew began trusting us with their personal and production vehicles.
+
+From the SABC, our reputation opened doors at Helen Joseph Hospital. Doctors and medical staff work grueling, unpredictable shifts; leaving the hospital to sit at a car wash simply isn’t an option. Because of the reliability we had proven and the strict security and trust we built with staff and hospital management, they granted us access to service their vehicles right on the hospital grounds while they focused on saving lives.
+
+What started as one person meeting client demand has grown into Cleansmith—one of Johannesburg’s premier mobile car wash and detailing teams. Today, we bring that exact same work ethic, security, and spotless finish directly to your home, office park, or workplace. No queues, no wasted hours—just showroom-clean results wherever you are.$$,
+   '', 'Meet the Team', '[]'::jsonb, 'The people behind the shine',
+   'Our team is trained to care for every vehicle with attention to detail, and takes pride in showing up reliably and treating each client with respect. They keep the CleanSmith standard alive across Joburg with careful, professional service and a spotless finish.',
+   4)
 on conflict (slug) do nothing;
 
 insert into public.membership_plans

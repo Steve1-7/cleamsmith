@@ -1,4 +1,5 @@
 (function () {
+  function initializeAdmin() {
   'use strict';
 
   var config = window.CLEANSMITH_SUPABASE_CONFIG || {};
@@ -261,6 +262,11 @@
   function renderGallery(data) {
     var list = document.getElementById('galleryList');
     list.replaceChildren();
+    var serviceNames = {
+      'car-wash': 'Car wash',
+      'home-cleaning': 'Home cleaning',
+      gardening: 'Gardening'
+    };
     data.forEach(function (work) {
       var preview = work.media_type === 'video' ? make('video') : make('img');
       preview.src = work.media_url;
@@ -270,7 +276,8 @@
       } else {
         preview.alt = work.alt_text || work.title;
       }
-      card(list, work.title, (work.is_published ? 'Published' : 'Hidden') + ' · ' + work.media_type,
+      card(list, work.title, (serviceNames[work.service_slug] || 'Car wash') + ' · ' +
+        (work.is_published ? 'Published' : 'Hidden') + ' · ' + work.media_type,
         function () { editForm(document.getElementById('galleryForm'), work, { is_published: String, sort_order: String }); },
         function () {
           if (!window.confirm('Delete this gallery item?')) return;
@@ -486,7 +493,8 @@
     return;
   }
 
-  client = window.supabase.createClient(config.url, config.anonKey);
+  client = window.CLEANSMITH_SUPABASE_CLIENT ||
+    (window.CLEANSMITH_SUPABASE_CLIENT = window.supabase.createClient(config.url, config.anonKey));
   setupDashboard();
   document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -508,4 +516,7 @@
     console.error('Unable to restore CLEANSMITH admin session:', error);
     message(loginStatus, error.message || 'Unable to restore the admin session.', true);
   });
+  }
+
+  window.CLEANSMITH_ADMIN_INIT = initializeAdmin;
 })();

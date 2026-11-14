@@ -1,5 +1,11 @@
-import { redirect } from "next/navigation";
+import AdminDashboard from "./AdminDashboard";
+import "./admin.css";
+
+export const metadata = {
+  title: "CLEANSMITH Admin",
+  robots: { index: false, follow: false },
+};
 
 export default function AdminPage() {
-  redirect("/admin.html");
+  return <AdminDashboard />;
 }
